@@ -27,11 +27,15 @@ for i in data:
         i["C"] = math.degrees(math.acos(Cos_c))
         changed = True
 
-    elif a is not None and b is not None and C is not None and c is None:
+    if a is not None and b is not None and C is not None and c is None:
         c = math.sqrt(a**2 + b**2 - 2 * b * a * math.cos(math.radians(C)))
+        B = math.degrees(math.asin((b * math.sin(math.radians(C))) / c))
+        A = 180 - C - B
         i["c"] = c
+        i["B"] = B
+        i["A"] = A
 
-    elif a is not None and b is not None and C is not None and B is None:
+    if a is not None and b is not None and C is not None and B is None:
         Sin_B = math.sin(math.radians(C)) * b / c
         if Sin_B > 1 or Sin_B < -1:
             i["error"] = "Not a triangle"
@@ -39,7 +43,7 @@ for i in data:
 
         i["B"] = math.degrees(math.asin(Sin_B))
 
-    elif a is not None and b is not None and A is not None and c is None:
+    if a is not None and b is not None and A is not None and c is None:
         Sin_B = (b * math.sin(math.radians(A))) / a
         if Sin_B > 1 or Sin_B < -1:
             i["error"] = "Not a triangle"
@@ -47,32 +51,29 @@ for i in data:
 
         B = math.degrees(math.asin(Sin_B))
         C = 180 - A - B
+        c = math.sqrt(a**2 + b**2 - 2 * b * a * math.cos(math.radians(C)))
         i["B"] = B
         i["C"] = C
+        i["c"] = c
 
-    elif a is not None and b is not None and A is not None and B is None:
+    if a is not None and b is not None and A is not None and B is None:
         B = math.degrees(math.asin((a * math.sin(math.radians(A))) / b))
         i["B"] = B
 
-    elif a is not None and b is not None and A is not None and C is None:
+    if a is not None and b is not None and A is not None and C is None:
         C = 180 - A - B
         i["C"] = C
 
-    elif A is not None and a is not None and b is not None and c is None:
-        Sin_B = math.sin(math.radians(A)) * b / a
-        if Sin_B > 1 or Sin_B < -1:
-            i["error"] = "Not a triangle"
-            continue
-
-        B = math.degrees(math.asin(Sin_B))
+    if A is not None and B is not None and a is None and b is None and c is None:
         C = 180 - A - B
-        i["C"] = C
 
         x = math.sin(math.radians(A)) / math.sin(math.radians(C))
         y = math.sin(math.radians(B)) / math.sin(math.radians(C))
 
+        i["C"] = C
         i["a/c"] = x
         i["b/c"] = y
+        print(x, y)
 
 with open("new.json", "w") as w:
     json.dump(data, w, indent=4)
