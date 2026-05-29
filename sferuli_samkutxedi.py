@@ -94,7 +94,7 @@ for i in data:
             i["B_1"] = B_1
         else:
             if (sin(a) / sin(A)) == (sin(b) / sin(B)):
-                i["B_1"] = B
+                i["B"] = B
             elif (sin(a) / sin(A)) == (sin(b) / sin(B_1)):
                 i["B_1"] = B_1
             else:
