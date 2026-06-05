@@ -157,17 +157,13 @@ def find_B(i, a, b, c, A, B, C):
         mricxveli = sin(A) * sin(b)
         mnishvneli = sin(a)
         B, B_1 = arcsin(mricxveli / mnishvneli)
-        if (sin(a) / sin(A)) == (sin(b) / sin(B)) == (sin(b) / sin(B_1)):
+        if (sin(a) / sin(A)) == (sin(b) / sin(B)):
             i["B"] = degrees_to_dms(B)
+        if (sin(a) / sin(A)) == (sin(b) / sin(B_1)):
             i["B_1"] = degrees_to_dms(B_1)
         else:
-            if (sin(a) / sin(A)) == (sin(b) / sin(B)):
-                i["B"] = degrees_to_dms(B)
-            elif (sin(a) / sin(A)) == (sin(b) / sin(B_1)):
-                i["B_1"] = degrees_to_dms(B_1)
-            else:
-                i["B"] = None
-                i["B_1"] = None
+            i["B"] = None
+            i["B_1"] = None
 
 
 with open("spher.json") as f:
