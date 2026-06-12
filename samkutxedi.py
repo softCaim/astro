@@ -112,7 +112,6 @@ for i in data:
             i["C"] = C
             B_1 = 180 - B
             if B_1 + A >= 180:
-                i["B_1"] = "Not valid"
                 continue
             else:
                 C_1 = 180 - B_1 - A
